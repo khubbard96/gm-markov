@@ -1,0 +1,29 @@
+{
+  "name": "gm-markov",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "sentence": "node markov.js",
+    "app": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khubbard96/gm-markov.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khubbard96/gm-markov/issues"
+  },
+  "homepage": "https://github.com/khubbard96/gm-markov#readme",
+  "dependencies": {
+    "director": "^1.2.8",
+    "express": "^4.17.1",
+    "https": "^1.0.0",
+    "load-json-file": "^6.2.0",
+    "markov-generator": "^1.2.3",
+    "write-json-file": "^4.3.0"
+  }
+}

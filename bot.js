@@ -29,12 +29,12 @@ var loading = true;
 })();
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]),
-      botRegex = /@Mr. Markov/g;
+  var request = JSON.parse(this.req.chunks[0]), botRegex = /what would @(.*) say/gm;
+  var attachments = request.attachments.length > 0 && request.attachments.find(el => el.type == "mentions")
 
-  if(request.text && botRegex.test(request.text)) {
+  if(request.text && botRegex.test(request.text) && attachments) {
     this.res.writeHead(200);
-    postMessage();
+    postMessage(attachments.user_ids[0]);
     this.res.end();
   } else {
     console.log("don't care");
@@ -43,10 +43,10 @@ function respond() {
   }
 }
 
-function postMessage() {
+function postMessage(userId) {
   var botResponse, options, body, botReq;
 
-  botResponse = getChain();
+  botResponse = getChain(userId);
 
   options = {
     hostname: 'api.groupme.com',
@@ -78,12 +78,11 @@ function postMessage() {
   botReq.end(JSON.stringify(body));
 }
 
-function getChain() {
+function getChain(userId) {
     if(!loading) {
-        let user = Object.keys(memberMarkovs)[Math.floor((Math.random() * Object.keys(memberMarkovs).length) + 1)];
-        let sentence = "I broke"
+        let sentence = "I broke";
         try {
-            sentence = memberMarkovs[user].makeChain();
+            sentence = memberMarkovs[userId].makeChain();
         } catch {
             
         }

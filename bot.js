@@ -29,7 +29,7 @@ var loading = true;
 })();
 
 function respond() {
-  var request = JSON.parse(this.req.chunks[0]), botRegex = /what would @(.*) say/gm;
+  var request = JSON.parse(this.req.chunks[0]), botRegex = /what would @(.*) say/gmi;
   var attachments = request.attachments.find(el => el.type == "mentions");
   console.log(attachments);
   var mentions;

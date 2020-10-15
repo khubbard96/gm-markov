@@ -30,13 +30,18 @@ var loading = true;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]), botRegex = /what would @(.*) say/gm;
-  var mentions = request.attachments.find(el => el.type == "mentions");
-  console.log(mentions);
-  var attachments = request.attachments.length > 0 && request.attachments.find(el => el.type == "mentions")
-
-  if(request.text && botRegex.test(request.text) && attachments) {
+  var attachments = request.attachments.find(el => el.type == "mentions");
+  console.log(attachments);
+  var mentions;
+  if(attachments) {
+    mentions = attachments.user_ids[0];
+  } else {
+    console.log("dont care");
+    return;
+  }
+  if(request.text && botRegex.test(request.text)) {
     this.res.writeHead(200);
-    postMessage(attachments.user_ids[0]);
+    postMessage(mentions);
     this.res.end();
   } else {
     console.log("don't care");

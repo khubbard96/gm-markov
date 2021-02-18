@@ -1,5 +1,4 @@
 const http = require('https');
-const TOKEN = "DP68V8vM1rQlObR0qYAU7gxFXuWgwzIw1gKAUWrN";
 const MESSAGES_LIMIT = 100;
 var lastMessage = undefined
 

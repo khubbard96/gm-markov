@@ -87,7 +87,7 @@ function postMessage(userId) {
 
 function getChain(userId) {
     if(!loading) {
-        let sentence = "I broke";
+        let sentence = "(...hmmm not sure...)";
         try {
             sentence = memberMarkovs[userId].makeChain();
         } catch {

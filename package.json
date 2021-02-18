@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node index.js",
     "sentence": "node markov.js",
-    "app": "node app.js"
+    "app": "node app.js",
+    "update": "node index.js"
   },
   "repository": {
     "type": "git",
